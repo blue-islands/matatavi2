@@ -45,41 +45,23 @@
     <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
       <ons-page>
         <ons-list>
-          <ons-list-item onclick="fn.load('settings.html')" tappable>
+          <ons-list-item onclick="fn.load('plan.html')" tappable>
             旅プラン
           </ons-list-item>
-          <ons-list-item onclick="fn.load('about.html')" tappable>
+          <ons-list-item onclick="fn.load('history.html')" tappable>
             履歴
           </ons-list-item>
         </ons-list>
       </ons-page>
     </ons-splitter-side>
-    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+    <ons-splitter-content id="content" page="plan.html"></ons-splitter-content>
   </ons-splitter>
 
-  <template id="home.html">
-    <ons-page>
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          Main
-        </div>
-      </ons-toolbar>
-      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-        Swipe right to open the menu!
-      </p>
-    </ons-page>
-  </template>
-
-  <template id="settings.html">
+  <template id="plan.html">
     <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
   </template>
 
-  <template id="about.html">
+  <template id="history.html">
     <ons-page>
       <ons-toolbar>
         <div class="left">
@@ -97,6 +79,11 @@
   <template id="page1.html">
     <ons-page id="page1">
       <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
         <div class="center">Page 1</div>
       </ons-toolbar>
 
@@ -109,6 +96,7 @@
   <template id="page2.html">
     <ons-page>
       <ons-toolbar>
+
         <div class="center">Tab 1</div>
       </ons-toolbar>
 
