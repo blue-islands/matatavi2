@@ -25,23 +25,40 @@
       var page = event.target;
 
       if (page.id === 'period') {
-        page.querySelector('#push-button0').onclick = function() {
+        page.querySelector('#push-period-0').onclick = function() {
           document.querySelector('#myNavigator').pushPage('keyword.html');
         };
-        page.querySelector('#push-button1').onclick = function() {
+        page.querySelector('#push-period-1').onclick = function() {
           document.querySelector('#myNavigator').pushPage('keyword.html');
         };
-        page.querySelector('#push-button2').onclick = function() {
+        page.querySelector('#push-period-2').onclick = function() {
           document.querySelector('#myNavigator').pushPage('keyword.html');
         };
-        page.querySelector('#push-button3').onclick = function() {
+        page.querySelector('#push-period-3').onclick = function() {
           document.querySelector('#myNavigator').pushPage('keyword.html');
         };
-        page.querySelector('#push-button4').onclick = function() {
+        page.querySelector('#push-period-4').onclick = function() {
           document.querySelector('#myNavigator').pushPage('keyword.html');
         };
       } else if (page.id === 'keyword') {
-        document.querySelector('#myNavigator').pushPage('siori.html');
+        page.querySelector('#push-keyword-all').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
+        page.querySelector('#push-keyword-gourmet').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
+        page.querySelector('#push-keyword-photo').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
+        page.querySelector('#push-keyword-healing').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
+        page.querySelector('#push-keyword-adventure').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
+        page.querySelector('#push-keyword-season').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('siori.html');
+        };
       } else if (page.id === 'siori') {
           document.querySelector('#myNavigator').pushPage('siori.html');
       }
@@ -122,11 +139,11 @@
       <div class="center-box-period">
           <h4>日数を選んでください。</h4>
           <div style="height: 30px;"></div>
-          <ons-button id="push-button0" class="btn button button--outline" style="width: 90%; margin: 0.2em;">日帰り</ons-button>
-          <ons-button id="push-button1" class="btn button button--outline" style="width: 90%; margin: 0.2em;">1泊2日</ons-button>
-          <ons-button id="push-button2" class="btn button button--outline" style="width: 90%; margin: 0.2em;">2泊3日</ons-button>
-          <ons-button id="push-button3" class="btn button button--outline" style="width: 90%; margin: 0.2em;">3泊4日</ons-button>
-          <ons-button id="push-button4" class="btn button button--outline" style="width: 90%; margin: 0.2em;">4泊5日</ons-button>
+          <ons-button id="push-period-0" class="btn button button--outline" style="width: 90%; margin: 0.2em;">日帰り</ons-button>
+          <ons-button id="push-period-1" class="btn button button--outline" style="width: 90%; margin: 0.2em;">1泊2日</ons-button>
+          <ons-button id="push-period-2" class="btn button button--outline" style="width: 90%; margin: 0.2em;">2泊3日</ons-button>
+          <ons-button id="push-period-3" class="btn button button--outline" style="width: 90%; margin: 0.2em;">3泊4日</ons-button>
+          <ons-button id="push-period-4" class="btn button button--outline" style="width: 90%; margin: 0.2em;">4泊5日</ons-button>
       </div>
     </ons-page>
   </template>
@@ -147,34 +164,40 @@
         <table style="width: 100%">
           <tr>
             <td>
-              <a onclick="clickKeyword('すべて')">
+              <a id="push-keyword-all">
+                <!-- すべて -->
                 <img id="all" alt="logo" src="img/all_.png">
               </a>
             </td>
             <td>
-              <a onclick="clickKeyword('グルメ')">
+              <a id="push-keyword-gourmet">
+                <!-- グルメ -->
                 <img id="gourmet" alt="logo" src="img/gourmet_.png">
               </a>
             </td>
             <td>
-              <a onclick="clickKeyword('写真')">
+              <a id="push-keyword-photo">
+                <!-- 写真 -->
                 <img id="photo" alt="logo" src="img/photo_.png">
               </a>
             </td>
           </tr>
           <tr>
             <td>
-              <a onclick="clickKeyword('癒し')">
+              <a id="push-keyword-healing">
+                <!-- 癒し -->
                 <img id="healing" alt="logo" src="img/healing_.png">
               </a>
             </td>
             <td>
-              <a onclick="clickKeyword('冒険')">
+              <a id="push-keyword-adventure">
+                <!-- 冒険 -->
                 <img id="adventure" alt="logo" src="img/adventure_.png">
               </a>
             </td>
             <td>
-              <a onclick="clickKeyword('季節')">
+              <a id="push-keyword-season">
+                <!-- 季節 -->
                 <img id="season" alt="logo" src="img/season_.png">
               </a>
             </td>
@@ -187,8 +210,12 @@
   <template id="siori.html">
     <ons-page id="siori" >
       <ons-toolbar>
-
-        <div class="center">Tab 1</div>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">旅プラン</div>
       </ons-toolbar>
 
       <ons-tabbar swipeable position="auto">
