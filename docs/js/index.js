@@ -77,11 +77,11 @@ document.addEventListener('prechange', function(event) {
   var tab = event.index;
   if (tab === 0) {
     // > 地図の場合
-    clickMakeSiori();
+//    clickMakeSiori();
     console.log('地図');
   } else if (tab === 1) {
     // > しおりの場合
-    initMap();
+//    initMap();
     console.log('しおり');
   }
 });
@@ -217,7 +217,7 @@ function nextMapAnimation(count, data) {
       nextMapAnimation(count + 1, data);
     } else {
       zoomMapRect(); // ズームを全体に設定
-      makeSioriAll(data);
+//      makeSioriAll(data);
     }
   }, 1000);
 }
@@ -256,60 +256,60 @@ function zoomMapRect() {
   ymap.setZoom(zoom, true, bnds.getCenter(), true);
 }
 
-function makeSioriAll(data) {
-  // for (var i = 0; i < data.length; i++) {
-  // elemPoint(data[i].name1, data[i].descs, "keiro" + (i + 1));
-  // }
-  // elemPoint("到着", "", "goal");
-
-  for (var i = 0; i < data.length; i++) {
-    var nameFrom = "出発";
-    if (i > 0)
-      nameFrom = data[i - 1].name1;
-    var nameTo = data[i].name1;
-    var id = "keiro" + i;
-
-    var latlng = [ {
-      "lat" : startLat,
-      "lng" : startLng
-    }, {
-      "lat" : data[i].lat,
-      "lng" : data[i].lng
-    } ];
-    if (i > 0) {
-      latlng[0].lat = data[i - 1].lat;
-      latlng[0].lng = data[i - 1].lng;
-    }
-
-    resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
-    resultApp[i].setConfigure("key", accessKey);
-    resultApp[i].setConfigure("ssl", true);
-    resultApp[i].setConfigure("from", nameFrom);
-    resultApp[i].setConfigure("to", nameTo);
-
-    searchRun(resultApp[i], latlng);
-
-  }
-
-  var i = data.length;
-  var nameFrom = data[i - 1].name1;
-  var nameTo = "到着";
-  var id = "keiro" + i;
-  var latlng = [ {
-    "lat" : data[i - 1].lat,
-    "lng" : data[i - 1].lng
-  }, {
-    "lat" : startLat,
-    "lng" : startLng
-  } ];
-  resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
-  resultApp[i].setConfigure("key", accessKey);
-  resultApp[i].setConfigure("ssl", true);
-  resultApp[i].setConfigure("from", nameFrom);
-  resultApp[i].setConfigure("to", nameTo);
-  searchRun(resultApp[i], latlng);
-
-}
+//function makeSioriAll(data) {
+//  // for (var i = 0; i < data.length; i++) {
+//  // elemPoint(data[i].name1, data[i].descs, "keiro" + (i + 1));
+//  // }
+//  // elemPoint("到着", "", "goal");
+//
+//  for (var i = 0; i < data.length; i++) {
+//    var nameFrom = "出発";
+//    if (i > 0)
+//      nameFrom = data[i - 1].name1;
+//    var nameTo = data[i].name1;
+//    var id = "keiro" + i;
+//
+//    var latlng = [ {
+//      "lat" : startLat,
+//      "lng" : startLng
+//    }, {
+//      "lat" : data[i].lat,
+//      "lng" : data[i].lng
+//    } ];
+//    if (i > 0) {
+//      latlng[0].lat = data[i - 1].lat;
+//      latlng[0].lng = data[i - 1].lng;
+//    }
+//
+//    resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
+//    resultApp[i].setConfigure("key", accessKey);
+//    resultApp[i].setConfigure("ssl", true);
+//    resultApp[i].setConfigure("from", nameFrom);
+//    resultApp[i].setConfigure("to", nameTo);
+//
+//    searchRun(resultApp[i], latlng);
+//
+//  }
+//
+//  var i = data.length;
+//  var nameFrom = data[i - 1].name1;
+//  var nameTo = "到着";
+//  var id = "keiro" + i;
+//  var latlng = [ {
+//    "lat" : data[i - 1].lat,
+//    "lng" : data[i - 1].lng
+//  }, {
+//    "lat" : startLat,
+//    "lng" : startLng
+//  } ];
+//  resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
+//  resultApp[i].setConfigure("key", accessKey);
+//  resultApp[i].setConfigure("ssl", true);
+//  resultApp[i].setConfigure("from", nameFrom);
+//  resultApp[i].setConfigure("to", nameTo);
+//  searchRun(resultApp[i], latlng);
+//
+//}
 
 function elemPoint(data, id) {
   var s_id = "'#s_" + id + "'";
