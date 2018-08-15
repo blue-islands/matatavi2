@@ -125,8 +125,8 @@ if (navigator.geolocation) {
 
 // MAP初期化
 function initMap() {
-  $('#map').html("");
-  $('#map').css('opacity', 0);
+  $('.main-map').html("");
+  $('.main-map').css('opacity', 0);
   ymap = null;
 
   $('#list').html("");
@@ -159,7 +159,7 @@ function clickMakeSiori() {
     $('#now-making').hide();
 
     // 地図アニメーションスタート
-    $('#map').css('opacity', 1);
+    $('.main-map').css('opacity', 1);
     setTimeout(startMapAnimation(data.points), 1000);
   });
 }
@@ -217,7 +217,7 @@ function nextMapAnimation(count, data) {
       nextMapAnimation(count + 1, data);
     } else {
       zoomMapRect(); // ズームを全体に設定
-//      makeSioriAll(data);
+      makeSioriAll(data);
     }
   }, 1000);
 }
@@ -254,6 +254,10 @@ function zoomMapRect() {
 
   console.log("zoom = " + zoom);
   ymap.setZoom(zoom, true, bnds.getCenter(), true);
+}
+
+function makeSioriAll(data) {
+    console.log(data);
 }
 
 //function makeSioriAll(data) {
