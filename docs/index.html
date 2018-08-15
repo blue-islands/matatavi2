@@ -119,7 +119,7 @@
           </ons-toolbar-button>
         </div>
         <div class="center">
-          About
+          履歴
         </div>
       </ons-toolbar>
     </ons-page>
@@ -211,23 +211,21 @@
     <ons-page id="siori" >
       <ons-toolbar>
         <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="md-menu"></ons-icon>
-          </ons-toolbar-button>
+          <ons-back-button>キーワード</ons-back-button>
         </div>
         <div class="center">旅プラン</div>
       </ons-toolbar>
 
       <ons-tabbar swipeable position="auto">
-        <ons-tab page="tab1.html" label="Tab 1" icon="ion-home, material:md-home" badge="7" active>
+        <ons-tab page="map.html" label="地図" icon="fa-map" active>
         </ons-tab>
-        <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">
+        <ons-tab page="list.html" label="しおり" icon="fa-list-ol">
         </ons-tab>
       </ons-tabbar>
     </ons-page>
   </template>
 
-  <template id="tab1.html">
+  <template id="map.html">
     <ons-page id="Tab1">
       <p style="text-align: center;">
         This is the first page.
@@ -235,7 +233,7 @@
     </ons-page>
   </template>
 
-  <template id="tab2.html">
+  <template id="list.html">
     <ons-page id="Tab2">
       <p style="text-align: center;">
         This is the second page.
