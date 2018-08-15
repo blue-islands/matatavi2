@@ -1,76 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <title>Matatavi〜また旅に出かけたくなるプラン提案〜</title>
+  <link rel="shortcut icon" href="fabicon.png">
+  <link rel="apple-touch-icon-precomposed" href="webclipicon_matatavi.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-
-  <script>
-    window.fn = {};
-
-    window.fn.open = function() {
-      var menu = document.getElementById('menu');
-      menu.open();
-    };
-
-    window.fn.load = function(page) {
-      var content = document.getElementById('content');
-      var menu = document.getElementById('menu');
-      content.load(page)
-        .then(menu.close.bind(menu));
-    };
-
-    document.addEventListener('init', function(event) {
-      var page = event.target;
-
-      if (page.id === 'period') {
-        page.querySelector('#push-period-0').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('keyword.html');
-        };
-        page.querySelector('#push-period-1').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('keyword.html');
-        };
-        page.querySelector('#push-period-2').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('keyword.html');
-        };
-        page.querySelector('#push-period-3').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('keyword.html');
-        };
-        page.querySelector('#push-period-4').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('keyword.html');
-        };
-      } else if (page.id === 'keyword') {
-        page.querySelector('#push-keyword-all').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-        page.querySelector('#push-keyword-gourmet').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-        page.querySelector('#push-keyword-photo').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-        page.querySelector('#push-keyword-healing').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-        page.querySelector('#push-keyword-adventure').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-        page.querySelector('#push-keyword-season').onclick = function() {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-        };
-      } else if (page.id === 'siori') {
-          document.querySelector('#myNavigator').pushPage('siori.html');
-      }
-    });
-
-    document.addEventListener('prechange', function(event) {
-      document.querySelector('ons-toolbar .center')
-        .innerHTML = event.tabItem.getAttribute('label');
-    });
-  </script>
-
-
+  <link rel="stylesheet" href="css/index.css">
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script type="text/javascript" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPW0zYXBCRWFrMDlZTyZzPWNvbnN1bWVyc2VjcmV0Jng9MmI-" charset="utf-8"></script>
+  <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
   <ons-splitter>
@@ -226,15 +170,13 @@
   </template>
 
   <template id="map.html">
-    <ons-page id="Tab1">
-      <p style="text-align: center;">
-        This is the first page.
-      </p>
+    <ons-page id="map">
+
     </ons-page>
   </template>
 
   <template id="list.html">
-    <ons-page id="Tab2">
+    <ons-page id="list">
       <p style="text-align: center;">
         This is the second page.
       </p>
