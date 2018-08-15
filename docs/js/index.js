@@ -125,8 +125,8 @@ if (navigator.geolocation) {
 
 // MAP初期化
 function initMap() {
-  $('.main-map').html("");
-  $('.main-map').css('opacity', 0);
+  $('#canvas').html("");
+  $('#canvas').css('opacity', 0);
   ymap = null;
 
   $('#list').html("");
@@ -159,14 +159,14 @@ function clickMakeSiori() {
     $('#now-making').hide();
 
     // 地図アニメーションスタート
-    $('.main-map').css('opacity', 1);
+    $('#canvas').css('opacity', 1);
     setTimeout(startMapAnimation(data.points), 1000);
   });
 }
 
 // 地図アニメーション開始
 function startMapAnimation(data) {
-  ymap = new Y.Map("map");
+  ymap = new Y.Map("canvas");
   ymap.drawMap(latlngStart, 9, Y.LayerSetId.NORMAL);
   ymap.addControl(new Y.LayerSetControl());
   ymap.addControl(new Y.ScaleControl());
