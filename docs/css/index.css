@@ -47,6 +47,14 @@ body {
     font-weight: bold;
 }
 
+.btn2 {
+    font-size: 300%;
+    padding-top: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+    vertical-align:middle;
+}
+
 .center-box-top {
     position: absolute;
     box-sizing: border-box;
