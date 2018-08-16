@@ -69,10 +69,6 @@ document.addEventListener('init', function(event) {
   } else if (page.id === 'siori') {
     page.querySelector('ons-toolbar .center').innerHTML = param.periodText
         + "、" + param.keyword + "の旅";
-
-
-
-
     clickMakeSiori();
   }
 });
@@ -81,44 +77,36 @@ document.addEventListener('show', function(event) {
   var page = event.target;
 
   if (page.id === 'period') {
-    console.log('1');
   } else if (page.id === 'keyword') {
-    console.log('2');
   } else if (page.id === 'siori') {
-    console.log('3');
     var toolbarHeight = $('ons-toolbar').height();
     var tabHeight = $('ons-tab').height();
     var sioriHeight = $('#siori').height();
-//    $('#siori').height(sioriHeight - tabHeight);
     $('#canvas').height(sioriHeight - tabHeight - toolbarHeight);
   }
 });
 
-document.addEventListener('prechange', function(event) {
-  var tab = event.index;
-  if (tab === 0) {
-    // > 地図の場合
-//    clickMakeSiori();
-    console.log('地図');
-  } else if (tab === 1) {
-    // > しおりの場合
-//    initMap();
-    console.log('しおり');
-  }
-});
-
-document.addEventListener('postchange', function(event) {
-  var tab = event.index;
-  if (tab === 0) {
-    // > 地図の場合
-//    clickMakeSiori();
-    console.log('地図');
-  } else if (tab === 1) {
-    // > しおりの場合
-//    initMap();
-    console.log('しおり');
-  }
-});
+//document.addEventListener('prechange', function(event) {
+//  var tab = event.index;
+//  if (tab === 0) {
+//    // > 地図の場合
+//    console.log('地図');
+//  } else if (tab === 1) {
+//    // > しおりの場合
+//    console.log('しおり');
+//  }
+//});
+//
+//document.addEventListener('postchange', function(event) {
+//  var tab = event.index;
+//  if (tab === 0) {
+//    // > 地図の場合
+//    console.log('地図');
+//  } else if (tab === 1) {
+//    // > しおりの場合
+//    console.log('しおり');
+//  }
+//});
 
 var ymap = null;
 var startLat = 35.161089;
@@ -291,7 +279,39 @@ function zoomMapRect() {
 }
 
 function makeSioriAll(data) {
-    console.log(data);
+
+  var timeline = $('.main-timeline');
+  timeline.empty();
+
+  for (var i = 0; i < data.length; i++) {
+    printProperties(data[i]);
+
+    var day = 0;
+    if (param.period <= 1) {
+      day = (i / 2) + 1;
+    } else {
+      day = i + 1;
+    }
+
+    var html = '';
+    html += '<div class="timeline">';
+    html += '<div class="timeline-icon"></div>';
+    if (i % 2 == 0) {
+      html += '<div class="timeline-content">';
+    } else {
+      html += '<div class="timeline-content right">';
+    }
+    html += '<span class="date">' + Math.floor(day) + '日目</span>';
+    html += '<h4 class="title">' + data[i].name1 + '</h4>';
+    html += '<p class="description">';
+    if (data[i].descs.length > 0) {
+      html += data[i].descs[0];
+    }
+    html += '</p>';
+    html += '</div>';
+    html += '</div>';
+    timeline.append(html);
+  }
 }
 
 //function makeSioriAll(data) {
@@ -391,4 +411,16 @@ function clickName(id) {
   } else {
     $(id).css("max-height", 10000);
   }
+}
+
+/**
+ * オブジェクトの中身を表示
+ * @param obj
+ */
+function printProperties(obj) {
+    var properties = '';
+    for (var prop in obj){
+        properties += prop + '=' + obj[prop] + '\n';
+    }
+    console.log(properties);
 }

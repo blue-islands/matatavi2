@@ -73,11 +73,12 @@
         left: 0;
     }
     .main-timeline .timeline-icon{
-        left: -8px;
+        left: -10px;
         margin: 0;
     }
     .main-timeline .timeline-content{
         width: 90%;
         float: right;
+        padding: 10px;
     }
 }
