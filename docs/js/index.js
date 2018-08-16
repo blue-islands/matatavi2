@@ -69,11 +69,45 @@ document.addEventListener('init', function(event) {
   } else if (page.id === 'siori') {
     page.querySelector('ons-toolbar .center').innerHTML = param.periodText
         + "、" + param.keyword + "の旅";
+
+
+
+
     clickMakeSiori();
   }
 });
 
+document.addEventListener('show', function(event) {
+  var page = event.target;
+
+  if (page.id === 'period') {
+    console.log('1');
+  } else if (page.id === 'keyword') {
+    console.log('2');
+  } else if (page.id === 'siori') {
+    console.log('3');
+    var toolbarHeight = $('ons-toolbar').height();
+    var tabHeight = $('ons-tab').height();
+    var sioriHeight = $('#siori').height();
+//    $('#siori').height(sioriHeight - tabHeight);
+    $('#canvas').height(sioriHeight - tabHeight - toolbarHeight);
+  }
+});
+
 document.addEventListener('prechange', function(event) {
+  var tab = event.index;
+  if (tab === 0) {
+    // > 地図の場合
+//    clickMakeSiori();
+    console.log('地図');
+  } else if (tab === 1) {
+    // > しおりの場合
+//    initMap();
+    console.log('しおり');
+  }
+});
+
+document.addEventListener('postchange', function(event) {
   var tab = event.index;
   if (tab === 0) {
     // > 地図の場合
