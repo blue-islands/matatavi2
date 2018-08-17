@@ -196,7 +196,7 @@ function startMapAnimation(data) {
   ymap.addFeature(new Y.Marker(latlngStart));
   oldLatLng = latlngStart;
 
-  makeSioriPoint(-1, data);
+//  makeSioriPoint(-1, data);
   setTimeout(nextMapAnimation(0, data), 1000);
 
 }
@@ -233,7 +233,7 @@ function nextMapAnimation(count, data) {
     else if (p.lng() > rect.max.lng)
       rect.max.lng = p.lng();
 
-    makeSioriPoint(count, data);
+//    makeSioriPoint(count, data);
 
     if (count + 1 <= data.length) {
       nextMapAnimation(count + 1, data);
@@ -245,27 +245,27 @@ function nextMapAnimation(count, data) {
 }
 
 // しおりポイント表示
-function makeSioriPoint(count, data) {
-  if (count < 0) {
-    var d = {
-      "name1" : "START",
-      "descs" : "",
-      "lat" : startLat,
-      "lng" : startLng
-    };
-    elemPoint(d, "keiro0");
-  } else if (count < data.length) {
-    elemPoint(data[count], "keiro" + (count + 1));
-  } else if (count == data.length) {
-    var d = {
-      "name1" : "GOAL",
-      "descs" : "",
-      "lat" : startLat,
-      "lng" : startLng
-    };
-    elemPoint(d, "goal");
-  }
-}
+//function makeSioriPoint(count, data) {
+//  if (count < 0) {
+//    var d = {
+//      "name1" : "START",
+//      "descs" : "",
+//      "lat" : startLat,
+//      "lng" : startLng
+//    };
+//    elemPoint(d, "keiro0");
+//  } else if (count < data.length) {
+//    elemPoint(data[count], "keiro" + (count + 1));
+//  } else if (count == data.length) {
+//    var d = {
+//      "name1" : "GOAL",
+//      "descs" : "",
+//      "lat" : startLat,
+//      "lng" : startLng
+//    };
+//    elemPoint(d, "goal");
+//  }
+//}
 
 // マップを全体表示できるズームに
 function zoomMapRect() {
@@ -283,15 +283,36 @@ function makeSioriAll(data) {
   var timeline = $('.main-timeline');
   timeline.empty();
 
+  var oldDay = 0;
   for (var i = 0; i < data.length; i++) {
     printProperties(data[i]);
 
     var day = 0;
+    var half = '';
     if (param.period <= 1) {
-      day = (i / 2) + 1;
+      day = Math.floor((i / 2) + 1);
+      if (oldDay == day) {
+        half = '後半';
+      } else {
+        half = '前半';
+      }
     } else {
       day = i + 1;
     }
+
+    var searchUrl = 'https://www.google.co.jp/search?q='
+                  + data[i].pref
+                  + data[i].city
+                  + data[i].street
+                  + ' '
+                  + data[i].name1
+
+    var mapUrl = 'https://www.google.com/maps/search/'
+                  + data[i].pref
+                  + data[i].city
+                  + data[i].street
+                  + '　'
+                  + data[i].name1
 
     var html = '';
     html += '<div class="timeline">';
@@ -301,16 +322,22 @@ function makeSioriAll(data) {
     } else {
       html += '<div class="timeline-content right">';
     }
-    html += '<span class="date">' + Math.floor(day) + '日目</span>';
+    html += '<span class="date">' + day + '日目 ' + half + ' </span>';
     html += '<h4 class="title">' + data[i].name1 + '</h4>';
     html += '<p class="description">';
     if (data[i].descs.length > 0) {
       html += data[i].descs[0];
     }
     html += '</p>';
+    html += '<a href="' + searchUrl + '" '
+    html += 'class="fab" style="background-color: #6379F3;" target="_blank"><img src="img/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
+    html += '&nbsp;&nbsp;';
+    html += '<a href="' + mapUrl + '" '
+    html += 'class="fab" style="background-color: #E04540;" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
     timeline.append(html);
+    oldDay = day;
   }
 }
 
@@ -369,39 +396,39 @@ function makeSioriAll(data) {
 //
 //}
 
-function elemPoint(data, id) {
-  var s_id = "'#s_" + id + "'";
-  $('#siori').append(
-      '<div class = "point" > ' + elemNameBar(s_id, data)
-          + '<section id="s_' + id + '" class="desc_box">'
-          + '<div class = "desc" > ' + data.descs + ' </div>'
-          + '<div id = "' + id + '">' + id + '</div>' + '</section>'
-          + '</div>');
-}
+//function elemPoint(data, id) {
+//  var s_id = "'#s_" + id + "'";
+//  $('#siori').append(
+//      '<div class = "point" > ' + elemNameBar(s_id, data)
+//          + '<section id="s_' + id + '" class="desc_box">'
+//          + '<div class = "desc" > ' + data.descs + ' </div>'
+//          + '<div id = "' + id + '">' + id + '</div>' + '</section>'
+//          + '</div>');
+//}
 
-function elemNameBar(s_id, data) {
-  var s = '<div class="name-bar">';
-  console.log(s_id);
-  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
-    s += '<a class="map-btn" href="https://www.google.co.jp/search?q='
-        + data.pref + data.city + '+' + data.name1
-        + '" target="_blank"><img src="img/icons8-google-50.png"/></a>'
-  }
-  s += '<h3 class = "name" onclick="clickName(' + s_id + ')" > ' + data.name1
-      + '</h3>';
-  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
-    s += '<a class="map-btn" href="https://www.google.com/maps/search/'
-        + data.pref
-        + data.city
-        + data.street
-        + '　'
-        + data.name1
-        + '" target="_blank"><img src="img/icons8-google-maps-50.png"/></a>';
-  }
-  s += '</div>';
-
-  return s;
-}
+//function elemNameBar(s_id, data) {
+//  var s = '<div class="name-bar">';
+//  console.log(s_id);
+//  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
+//    s += '<a class="map-btn" href="https://www.google.co.jp/search?q='
+//        + data.pref + data.city + '+' + data.name1
+//        + '" target="_blank"><img src="img/icons8-google-50.png"/></a>'
+//  }
+//  s += '<h3 class = "name" onclick="clickName(' + s_id + ')" > ' + data.name1
+//      + '</h3>';
+//  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
+//    s += '<a class="map-btn" href="https://www.google.com/maps/search/'
+//        + data.pref
+//        + data.city
+//        + data.street
+//        + '　'
+//        + data.name1
+//        + '" target="_blank"><img src="img/icons8-google-maps-50.png"/></a>';
+//  }
+//  s += '</div>';
+//
+//  return s;
+//}
 
 function clickName(id) {
   console.log($(id).css("max-height"));
