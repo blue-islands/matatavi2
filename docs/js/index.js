@@ -300,19 +300,27 @@ function makeSioriAll(data) {
       day = i + 1;
     }
 
-    var searchUrl = 'https://www.google.co.jp/search?q='
-                  + data[i].pref
-                  + data[i].city
-                  + data[i].street
-                  + ' '
-                  + data[i].name1
+    var searchUrl = 'https://www.google.co.jp/search?q=';
+    if (data[i].pref)
+        searchUrl += data[i].pref;
+    if (data[i].city)
+        searchUrl += data[i].city;
+    if (data[i].street)
+        searchUrl += data[i].street;
+        searchUrl += ' ';
+    if (data[i].name1)
+        searchUrl += data[i].name1;
 
-    var mapUrl = 'https://www.google.com/maps/search/'
-                  + data[i].pref
-                  + data[i].city
-                  + data[i].street
-                  + '　'
-                  + data[i].name1
+    var mapUrl = 'https://www.google.com/maps/search/';
+    if (data[i].pref)
+        mapUrl += data[i].pref;
+    if (data[i].city)
+        mapUrl += data[i].city;
+    if (data[i].street)
+        mapUrl += data[i].street;
+        mapUrl += ' ';
+    if (data[i].name1)
+        mapUrl += data[i].name1;
 
     var html = '';
     html += '<div class="timeline">';
@@ -330,10 +338,10 @@ function makeSioriAll(data) {
     }
     html += '</p>';
     html += '<a href="' + searchUrl + '" '
-    html += 'class="fab" style="background-color: #6379F3;" target="_blank"><img src="img/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
+    html += 'class="fab search-button" target="_blank"><img src="img/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
     html += '<a href="' + mapUrl + '" '
-    html += 'class="fab" style="background-color: #E04540;" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
+    html += 'class="fab map-button" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
     timeline.append(html);
