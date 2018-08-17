@@ -67,6 +67,8 @@ document.addEventListener('init', function(event) {
       document.querySelector('#myNavigator').pushPage('siori.html');
     };
   } else if (page.id === 'siori') {
+    var modal = document.querySelector('ons-modal');
+    modal.show();
     page.querySelector('ons-toolbar .center').innerHTML = param.periodText
         + "、" + param.keyword + "の旅";
     clickMakeSiori();
@@ -178,7 +180,8 @@ function clickMakeSiori() {
     "keywords" : param.keyword,
   }, function(data, status) {
     console.log(data);
-    $('#now-making').hide();
+    var modal = document.querySelector('ons-modal');
+    modal.hide();
 
     // 地図アニメーションスタート
     $('#canvas').css('opacity', 1);
