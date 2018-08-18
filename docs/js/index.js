@@ -347,7 +347,7 @@ function makeSioriAll(data) {
       html += data[i].descs[0];
     }
     html += '</p>';
-    html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
+    html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ',this)" '
     html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
     html += '<a href="' + searchUrl + '" '
@@ -376,7 +376,7 @@ function makeSioriAll(data) {
       }
       html += '<span class="date">ゴール</span>';
       html += '<h4 class="title"></h4>';
-      html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
+      html += '<a href="#" onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ',this)" '
       html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
       html += '</div>';
       html += '</div>';
@@ -401,34 +401,28 @@ function clickName(id) {
 }
 
 //URL作成クリック
-function clickMakeEkispertUrl(lat1, lng1, lat2, lng2) {
+function clickMakeEkispertUrl(lat1, lng1, lat2, lng2, my) {
 
-  $.ajax({
-    url:'https://www.livlog.xyz/matatavi/getEkispertUrl',
-    type:'GET',
-    data:{
-      "from" : lat1 + ',' + lng1,
-      "to" : lat2 + ',' + lng2,
-    }
-  })
-  // Ajaxリクエストが成功した時発動
-  .done( (data) => {
-    console.log(data);
-    if (data.url) {
-      window.open(data.url, '_blank');
-    } else {
-      alert('ルートが見つかりませんでした。');
-    }
-  })
-  // Ajaxリクエストが失敗した時発動
-  .fail( (data) => {
+  var formdata = {
+      'from' : lat1 + ',' + lng1,
+      'to' : lat2 + ',' + lng2,
+  }
+  var json = $.ajax({
+    url: 'https://www.livlog.xyz/matatavi/getEkispertUrl',
+    type: 'GET',
+    data: formdata,
+    dataType: 'json',
+    async: false
+  }).responseText;
+  var data = JSON.parse(json);
+
+  console.log(data);
+  if (data.url) {
+//    window.open(data.url, '_blank');
+    my.href = data.url;
+  } else {
     alert('ルートが見つかりませんでした。');
-  })
-  // Ajaxリクエストが成功・失敗どちらでも発動
-  .always( (data) => {
-
-  });
-
+  }
 }
 
 /**
