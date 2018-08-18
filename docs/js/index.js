@@ -171,6 +171,7 @@ function initMap() {
 function clickMakeSiori() {
   initMap();
 
+  var uid = localStorage.getItem('uid');
   var vLat = startLat;
   var vLng = startLng;
   $.getJSON("https://www.livlog.xyz/matatavi/getTourspot", {
@@ -178,11 +179,13 @@ function clickMakeSiori() {
     "lng" : vLng,
     "nights" : param.period,
     "keywords" : param.keyword,
+    "uid" : uid,
   }, function(data, status) {
     console.log(data);
     var modal = document.querySelector('ons-modal');
     modal.hide();
-
+    // ユーザーIDの保持
+    localStorage.setItem('uid', data.userId);
     // 地図アニメーションスタート
     $('#canvas').css('opacity', 1);
     setTimeout(startMapAnimation(data.points), 1000);
