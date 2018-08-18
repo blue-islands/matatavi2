@@ -199,9 +199,7 @@ function startMapAnimation(data) {
   ymap.addFeature(new Y.Marker(latlngStart));
   oldLatLng = latlngStart;
 
-//  makeSioriPoint(-1, data);
   setTimeout(nextMapAnimation(0, data), 1000);
-
 }
 // 地図アニメーション次のポイント
 function nextMapAnimation(count, data) {
@@ -236,8 +234,6 @@ function nextMapAnimation(count, data) {
     else if (p.lng() > rect.max.lng)
       rect.max.lng = p.lng();
 
-//    makeSioriPoint(count, data);
-
     if (count + 1 <= data.length) {
       nextMapAnimation(count + 1, data);
     } else {
@@ -246,29 +242,6 @@ function nextMapAnimation(count, data) {
     }
   }, 1000);
 }
-
-// しおりポイント表示
-//function makeSioriPoint(count, data) {
-//  if (count < 0) {
-//    var d = {
-//      "name1" : "START",
-//      "descs" : "",
-//      "lat" : startLat,
-//      "lng" : startLng
-//    };
-//    elemPoint(d, "keiro0");
-//  } else if (count < data.length) {
-//    elemPoint(data[count], "keiro" + (count + 1));
-//  } else if (count == data.length) {
-//    var d = {
-//      "name1" : "GOAL",
-//      "descs" : "",
-//      "lat" : startLat,
-//      "lng" : startLng
-//    };
-//    elemPoint(d, "goal");
-//  }
-//}
 
 // マップを全体表示できるズームに
 function zoomMapRect() {
@@ -287,6 +260,10 @@ function makeSioriAll(data) {
   timeline.empty();
 
   var oldDay = 0;
+  var lat1 = 0;
+  var lng1 = 0;
+  var lat2 = 0;
+  var lng2 = 0;
   for (var i = 0; i < data.length; i++) {
     printProperties(data[i]);
 
@@ -304,26 +281,53 @@ function makeSioriAll(data) {
     }
 
     var searchUrl = 'https://www.google.co.jp/search?q=';
-    if (data[i].pref)
-        searchUrl += data[i].pref;
-    if (data[i].city)
-        searchUrl += data[i].city;
-    if (data[i].street)
-        searchUrl += data[i].street;
-        searchUrl += ' ';
-    if (data[i].name1)
-        searchUrl += data[i].name1;
+    if (data[i].pref) {
+      searchUrl += data[i].pref;
+    }
+    if (data[i].city) {
+      searchUrl += data[i].city;
+    }
+    if (data[i].street) {
+      searchUrl += data[i].street;
+    }
+    searchUrl += ' ';
+    if (data[i].name1) {
+      searchUrl += data[i].name1;
+    }
 
     var mapUrl = 'https://www.google.com/maps/search/';
-    if (data[i].pref)
-        mapUrl += data[i].pref;
-    if (data[i].city)
-        mapUrl += data[i].city;
-    if (data[i].street)
-        mapUrl += data[i].street;
-        mapUrl += ' ';
-    if (data[i].name1)
-        mapUrl += data[i].name1;
+    if (data[i].pref) {
+      mapUrl += data[i].pref;
+    }
+    if (data[i].city) {
+      mapUrl += data[i].city;
+    }
+    if (data[i].street) {
+      mapUrl += data[i].street;
+    }
+    mapUrl += ' ';
+    if (data[i].name1) {
+      mapUrl += data[i].name1;
+    }
+
+    if (i == 0) {
+      // > 最初の場合
+      lat1 = startLat;
+      lng1 = startLng;
+      lat2 = data[i].lat;
+      lng2 = data[i].lng;
+    } else if (i == (data.length - 1)) {
+      // > 最後の場合
+      lat1 = data[i].lat;
+      lng1 = data[i].lng;
+      lat2 = startLat;
+      lng2 = startLng;
+    } else {
+      lat1 = data[i].lat;
+      lng1 = data[i].lng;
+      lat2 = data[i+1].lat;
+      lng2 = data[i+1].lng;
+    }
 
     var html = '';
     html += '<div class="timeline">';
@@ -346,7 +350,7 @@ function makeSioriAll(data) {
     html += '<a href="' + mapUrl + '" '
     html += 'class="fab map-button" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
-    html += '<a href="' + '' + '" '
+    html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
     html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
@@ -356,95 +360,6 @@ function makeSioriAll(data) {
   timeline.append('<div style="height: 5em;"></div>');
 }
 
-//function makeSioriAll(data) {
-//  // for (var i = 0; i < data.length; i++) {
-//  // elemPoint(data[i].name1, data[i].descs, "keiro" + (i + 1));
-//  // }
-//  // elemPoint("到着", "", "goal");
-//
-//  for (var i = 0; i < data.length; i++) {
-//    var nameFrom = "出発";
-//    if (i > 0)
-//      nameFrom = data[i - 1].name1;
-//    var nameTo = data[i].name1;
-//    var id = "keiro" + i;
-//
-//    var latlng = [ {
-//      "lat" : startLat,
-//      "lng" : startLng
-//    }, {
-//      "lat" : data[i].lat,
-//      "lng" : data[i].lng
-//    } ];
-//    if (i > 0) {
-//      latlng[0].lat = data[i - 1].lat;
-//      latlng[0].lng = data[i - 1].lng;
-//    }
-//
-//    resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
-//    resultApp[i].setConfigure("key", accessKey);
-//    resultApp[i].setConfigure("ssl", true);
-//    resultApp[i].setConfigure("from", nameFrom);
-//    resultApp[i].setConfigure("to", nameTo);
-//
-//    searchRun(resultApp[i], latlng);
-//
-//  }
-//
-//  var i = data.length;
-//  var nameFrom = data[i - 1].name1;
-//  var nameTo = "到着";
-//  var id = "keiro" + i;
-//  var latlng = [ {
-//    "lat" : data[i - 1].lat,
-//    "lng" : data[i - 1].lng
-//  }, {
-//    "lat" : startLat,
-//    "lng" : startLng
-//  } ];
-//  resultApp[i] = new expGuiCoursePlain(document.getElementById(id));
-//  resultApp[i].setConfigure("key", accessKey);
-//  resultApp[i].setConfigure("ssl", true);
-//  resultApp[i].setConfigure("from", nameFrom);
-//  resultApp[i].setConfigure("to", nameTo);
-//  searchRun(resultApp[i], latlng);
-//
-//}
-
-//function elemPoint(data, id) {
-//  var s_id = "'#s_" + id + "'";
-//  $('#siori').append(
-//      '<div class = "point" > ' + elemNameBar(s_id, data)
-//          + '<section id="s_' + id + '" class="desc_box">'
-//          + '<div class = "desc" > ' + data.descs + ' </div>'
-//          + '<div id = "' + id + '">' + id + '</div>' + '</section>'
-//          + '</div>');
-//}
-
-//function elemNameBar(s_id, data) {
-//  var s = '<div class="name-bar">';
-//  console.log(s_id);
-//  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
-//    s += '<a class="map-btn" href="https://www.google.co.jp/search?q='
-//        + data.pref + data.city + '+' + data.name1
-//        + '" target="_blank"><img src="img/icons8-google-50.png"/></a>'
-//  }
-//  s += '<h3 class = "name" onclick="clickName(' + s_id + ')" > ' + data.name1
-//      + '</h3>';
-//  if (s_id != "'#s_keiro0'" && s_id != "'#s_goal'") {
-//    s += '<a class="map-btn" href="https://www.google.com/maps/search/'
-//        + data.pref
-//        + data.city
-//        + data.street
-//        + '　'
-//        + data.name1
-//        + '" target="_blank"><img src="img/icons8-google-maps-50.png"/></a>';
-//  }
-//  s += '</div>';
-//
-//  return s;
-//}
-
 function clickName(id) {
   console.log($(id).css("max-height"));
 
@@ -453,6 +368,18 @@ function clickName(id) {
   } else {
     $(id).css("max-height", 10000);
   }
+}
+
+//URL作成クリック
+function clickMakeEkispertUrl(lat1, lng1, lat2, lng2) {
+
+  $.getJSON("https://www.livlog.xyz/matatavi/getEkispertUrl", {
+    "from" : lat1 + ',' + lng1,
+    "to" : lat2 + ',' + lng2,
+  }, function(data, status) {
+    console.log(data);
+    window.open(data.url, '_blank');
+  });
 }
 
 /**
