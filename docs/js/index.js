@@ -316,17 +316,17 @@ function makeSioriAll(data) {
       lng1 = startLng;
       lat2 = data[i].lat;
       lng2 = data[i].lng;
-    } else if (i == (data.length - 1)) {
-      // > 最後の場合
-      lat1 = data[i].lat;
-      lng1 = data[i].lng;
-      lat2 = startLat;
-      lng2 = startLng;
+//    } else if (i == (data.length - 1)) {
+//      // > 最後の場合
+//      lat1 = data[i].lat;
+//      lng1 = data[i].lng;
+//      lat2 = startLat;
+//      lng2 = startLng;
     } else {
-      lat1 = data[i].lat;
-      lng1 = data[i].lng;
-      lat2 = data[i+1].lat;
-      lng2 = data[i+1].lng;
+      lat1 = data[i-1].lat;
+      lng1 = data[i-1].lng;
+      lat2 = data[i].lat;
+      lng2 = data[i].lng;
     }
 
     var html = '';
@@ -373,13 +373,40 @@ function clickName(id) {
 //URL作成クリック
 function clickMakeEkispertUrl(lat1, lng1, lat2, lng2) {
 
-  $.getJSON("https://www.livlog.xyz/matatavi/getEkispertUrl", {
-    "from" : lat1 + ',' + lng1,
-    "to" : lat2 + ',' + lng2,
-  }, function(data, status) {
+//  $.getJSON("https://www.livlog.xyz/matatavi/getEkispertUrl", {
+//    "from" : lat1 + ',' + lng1,
+//    "to" : lat2 + ',' + lng2,
+//  }, function(data, status) {
+//    console.log(data);
+//    window.open(data.url, '_blank');
+//  });
+
+  $.ajax({
+    url:'https://www.livlog.xyz/matatavi/getEkispertUrl',
+    type:'GET',
+    data:{
+      "from" : lat1 + ',' + lng1,
+      "to" : lat2 + ',' + lng2,
+    }
+  })
+  // Ajaxリクエストが成功した時発動
+  .done( (data) => {
     console.log(data);
-    window.open(data.url, '_blank');
+    if (data.url) {
+      window.open(data.url, '_blank');
+    } else {
+      alert('ルートが見つかりませんでした。');
+    }
+  })
+  // Ajaxリクエストが失敗した時発動
+  .fail( (data) => {
+    alert('ルートが見つかりませんでした。');
+  })
+  // Ajaxリクエストが成功・失敗どちらでも発動
+  .always( (data) => {
+
   });
+
 }
 
 /**
