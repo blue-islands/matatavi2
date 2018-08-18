@@ -259,13 +259,22 @@ function makeSioriAll(data) {
   var timeline = $('.main-timeline');
   timeline.empty();
 
+  var html = '';
+  html += '<div class="timeline">';
+  html += '<div class="timeline-icon"></div>';
+  html += '<div class="timeline-content right">';
+  html += '<span class="date">スタート</span>';
+  html += '<h4 class="title"></h4>';
+  html += '</div>';
+  html += '</div>';
+  timeline.append(html);
+
   var oldDay = 0;
   var lat1 = 0;
   var lng1 = 0;
   var lat2 = 0;
   var lng2 = 0;
   for (var i = 0; i < data.length; i++) {
-    printProperties(data[i]);
 
     var day = 0;
     var half = '';
@@ -316,12 +325,6 @@ function makeSioriAll(data) {
       lng1 = startLng;
       lat2 = data[i].lat;
       lng2 = data[i].lng;
-//    } else if (i == (data.length - 1)) {
-//      // > 最後の場合
-//      lat1 = data[i].lat;
-//      lng1 = data[i].lng;
-//      lat2 = startLat;
-//      lng2 = startLng;
     } else {
       lat1 = data[i-1].lat;
       lng1 = data[i-1].lng;
@@ -329,7 +332,7 @@ function makeSioriAll(data) {
       lng2 = data[i].lng;
     }
 
-    var html = '';
+    html = '';
     html += '<div class="timeline">';
     html += '<div class="timeline-icon"></div>';
     if (i % 2 == 0) {
@@ -344,19 +347,46 @@ function makeSioriAll(data) {
       html += data[i].descs[0];
     }
     html += '</p>';
+    html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
+    html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
+    html += '&nbsp;&nbsp;';
     html += '<a href="' + searchUrl + '" '
     html += 'class="fab search-button" target="_blank"><img src="img/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
     html += '<a href="' + mapUrl + '" '
     html += 'class="fab map-button" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
-    html += '&nbsp;&nbsp;';
-    html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
-    html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
     timeline.append(html);
+
+    if (i == (data.length - 1)) {
+      lat1 = data[i].lat;
+      lng1 = data[i].lng;
+      lat2 = startLat;
+      lng2 = startLng;
+
+      i++;
+      html = '';
+      html += '<div class="timeline">';
+      html += '<div class="timeline-icon"></div>';
+      if (i % 2 == 0) {
+        html += '<div class="timeline-content">';
+      } else {
+        html += '<div class="timeline-content right">';
+      }
+      html += '<span class="date">ゴール</span>';
+      html += '<h4 class="title"></h4>';
+      html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ')" '
+      html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
+      html += '</div>';
+      html += '</div>';
+      timeline.append(html);
+    }
+
+
     oldDay = day;
   }
+
   timeline.append('<div style="height: 5em;"></div>');
 }
 
@@ -372,14 +402,6 @@ function clickName(id) {
 
 //URL作成クリック
 function clickMakeEkispertUrl(lat1, lng1, lat2, lng2) {
-
-//  $.getJSON("https://www.livlog.xyz/matatavi/getEkispertUrl", {
-//    "from" : lat1 + ',' + lng1,
-//    "to" : lat2 + ',' + lng2,
-//  }, function(data, status) {
-//    console.log(data);
-//    window.open(data.url, '_blank');
-//  });
 
   $.ajax({
     url:'https://www.livlog.xyz/matatavi/getEkispertUrl',
