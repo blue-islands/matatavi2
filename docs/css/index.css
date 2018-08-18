@@ -138,11 +138,21 @@ body {
 }
 
 .map-button {
-    background-color: #E04540;
+    background-color: #3AAA54;
 }
 
 .map-button:active {
-    background-color: #E04540;
+    background-color: #3AAA54;
+    transition: none;
+    opacity: 0.2;
+}
+
+.eki-button {
+    background-color: #C7000E;
+}
+
+.eki-button:active {
+    background-color: #C7000E;
     transition: none;
     opacity: 0.2;
 }

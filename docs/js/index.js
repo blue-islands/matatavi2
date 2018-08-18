@@ -345,11 +345,15 @@ function makeSioriAll(data) {
     html += '&nbsp;&nbsp;';
     html += '<a href="' + mapUrl + '" '
     html += 'class="fab map-button" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
+    html += '&nbsp;&nbsp;';
+    html += '<a href="' + '' + '" '
+    html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
     timeline.append(html);
     oldDay = day;
   }
+  timeline.append('<div style="height: 5em;"></div>');
 }
 
 //function makeSioriAll(data) {
