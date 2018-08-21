@@ -72,6 +72,8 @@ document.addEventListener('init', function(event) {
     page.querySelector('ons-toolbar .center').innerHTML = param.periodText
         + "、" + param.keyword + "の旅";
     clickMakeSiori();
+  } else if (page.id === 'history') {
+    clickMakeHistory();
   }
 });
 
@@ -87,6 +89,51 @@ document.addEventListener('show', function(event) {
     $('#canvas').height(sioriHeight - tabHeight - toolbarHeight);
   }
 });
+
+//履歴作成クリック
+function clickMakeHistory() {
+
+  var uid = localStorage.getItem('uid');
+  $.getJSON("https://www.livlog.xyz/matatavi/getHistory", {
+    "uid" : uid,
+  }, function(data, status) {
+    printProperties(data);
+
+    var historyList = $('#historyList');
+    historyList.empty();
+
+
+    for (var i = 0; i < data.history.length; i++) {
+      var history = data.history[i]
+      var periodName = '';
+      if (history.period == 0) {
+        periodName = '日帰り';
+      } else if (history.period == 1) {
+        periodName = '1泊2日';
+      } else if (history.period == 2) {
+        periodName = '2泊3日';
+      } else if (history.period == 3) {
+        periodName = '3泊4日';
+      } else if (history.period == 4) {
+        periodName = '4泊5日';
+      }
+
+      var html = '';
+      html += '<ons-list-item modifier="chevron" tappable>';
+      html += '<div class="left" style="width: 40px;" align="center">';
+      html += '<i class="icon-0"></i>';
+      html += '</div>';
+      html += '<div class="center">';
+      html += '<span class="list-item__title">Cutest kitty</span>';
+      html += '<span class="list-item__subtitle">On the Internet</span>';
+      html += '</div>';
+      html += '</ons-list-item>';
+      historyList.append(html);
+
+
+    }
+  });
+}
 
 //document.addEventListener('prechange', function(event) {
 //  var tab = event.index;
