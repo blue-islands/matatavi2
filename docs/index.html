@@ -70,60 +70,7 @@
         </div>
       </ons-toolbar>
       <ons-list id="historyList">
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-0"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-1"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-2"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-3"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-4"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
-        <ons-list-item modifier="chevron" tappable>
-          <div class="left" style="width: 40px;" align="center">
-            <i class="icon-5"></i>
-          </div>
-          <div class="center">
-            <span class="list-item__title">Cutest kitty</span>
-            <span class="list-item__subtitle">On the Internet</span>
-          </div>
-        </ons-list-item>
+
       </ons-list>
     </ons-page>
   </template>
@@ -228,6 +175,26 @@
       <ons-toolbar>
         <div class="left">
           <ons-back-button>種類</ons-back-button>
+        </div>
+        <div class="center">旅プラン</div>
+      </ons-toolbar>
+
+      <ons-tabbar id="siori-tab" position="top">
+        <ons-tab page="map.html" label="地図" icon="fa-map" active>
+        </ons-tab>
+        <ons-tab page="list.html" label="しおり" icon="fa-list-ol">
+        </ons-tab>
+      </ons-tabbar>
+    </ons-page>
+  </template>
+
+  <template id="siori2.html">
+    <ons-page id="siori2" class="page">
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
         </div>
         <div class="center">旅プラン</div>
       </ons-toolbar>
