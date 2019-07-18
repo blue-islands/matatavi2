@@ -1,3 +1,12 @@
+var domain = 'https://www.livlog.xyz/webapi/';
+//var domain = 'http://localhost:8080/livlog-api/';
+var urls = {
+  getHistory: domain + 'getHistory',
+  getPlan: domain + 'getPlan',
+  getTourspot: domain + 'getTourspot',
+  getEkispertUrl: domain + 'getEkispertUrl'
+}
+
 var param = {};
 window.fn = {};
 
@@ -104,7 +113,7 @@ function clickMakeHistory() {
   modal.show();
 
   var uid = localStorage.getItem('uid');
-  $.getJSON("https://www.livlog.xyz/webapi/getHistory", {
+  $.getJSON(urls.getHistory, {
     "uid" : uid,
   }, function(data, status) {
 
@@ -162,7 +171,7 @@ function clickReMakeSiori(planId, period, keyword) {
   var uid = localStorage.getItem('uid');
   var vLat = startLat;
   var vLng = startLng;
-  $.getJSON("https://www.livlog.xyz/webapi/getPlan", {
+  $.getJSON(urls.getPlan, {
     "planId" : planId,
     "uid" : uid,
   }, function(data, status) {
@@ -262,7 +271,7 @@ function clickMakeSiori() {
   var uid = localStorage.getItem('uid');
   var vLat = startLat;
   var vLng = startLng;
-  $.getJSON("https://www.livlog.xyz/webapi/getTourspot", {
+  $.getJSON(urls.getTourspot, {
     "lat" : vLat,
     "lng" : vLng,
     "nights" : param.period,
@@ -499,7 +508,7 @@ function clickMakeEkispertUrl(lat1, lng1, lat2, lng2, my) {
       'to' : lat2 + ',' + lng2,
   }
   var json = $.ajax({
-    url: 'https://www.livlog.xyz/webapi/getEkispertUrl',
+    url: urls.getEkispertUrl,
     type: 'GET',
     data: formdata,
     dataType: 'json',
