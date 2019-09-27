@@ -4,9 +4,20 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <title>Matatavi〜また旅に出かけたくなるプラン提案〜</title>
+  <link rel="manifest" href="manifest.json">
   <link rel="shortcut icon" href="fabicon.png">
   <link rel="apple-touch-icon-precomposed" href="webclipicon_matatavi.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <meta name="description" content="matataviは「旅のしおり」自動作成サービスです。旅行における意識決定を手助けいたします。">
+  <meta data-n-head="true" data-hid="description" name="description" content="matataviは「旅のしおり」自動作成サービスです。旅行における意識決定を手助けいたします。">
+  <meta data-n-head="true" data-hid="og:site_name" property="og:site_name" content="Matatavi">
+  <meta data-n-head="true" data-hid="og:url" property="og:url" content="https://matatavi.net/">
+  <meta data-n-head="true" data-hid="og:title" property="og:title" content="Matatavi〜また旅に出かけたくなるプラン提案〜">
+  <meta data-n-head="true" data-hid="og:description" property="og:description" content="matataviは「旅のしおり」自動作成サービスです。旅行における意識決定を手助けいたします。">
+  <meta data-n-head="true" data-hid="og:type" property="og:type" content="article">
+  <script src="components/loader.js"></script>
+  <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="libs/onsen-css-theme/onsen-css-components.min.css">
   <link rel="stylesheet" href="libs/onsen-css-theme/theme.css">
@@ -40,10 +51,10 @@
     <ons-page class="page">
       <div class="center-box-top">
         <h1>
-            <img alt="logo" src="img/logo.png">
+          <img alt="logo" src="images/logo.png">
         </h1>
         <h2>また、旅がしたくなる</h2>
-        <p>matataviは「旅のしおり」</p>
+        <p>Matataviは「旅のしおり」</p>
         <p>自動作成サービスです。</p>
         <p>旅行における意識決定を</p>
         <p>手助けいたします。</p>
@@ -96,6 +107,7 @@
           <ons-button id="push-period-2" class="btn button" style="width: 90%; margin: 0.2em;">2泊3日</ons-button>
           <ons-button id="push-period-3" class="btn button" style="width: 90%; margin: 0.2em;">3泊4日</ons-button>
           <ons-button id="push-period-4" class="btn button" style="width: 90%; margin: 0.2em;">4泊5日</ons-button>
+          <ons-button id="push-period-9" class="btn button" style="width: 90%; margin: 0.2em;">散歩</ons-button>
       </div>
     </ons-page>
   </template>

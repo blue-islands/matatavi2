@@ -50,6 +50,11 @@ document.addEventListener('init', function(event) {
       param.periodText = '4泊5日';
       document.querySelector('#myNavigator').pushPage('keyword.html');
     };
+    page.querySelector('#push-period-9').onclick = function() {
+      param.period = 9;
+      param.periodText = '散歩';
+      document.querySelector('#myNavigator').pushPage('keyword.html');
+    };
   } else if (page.id === 'keyword') {
     page.querySelector('#push-keyword-all').onclick = function() {
       param.keyword = 'すべて';
