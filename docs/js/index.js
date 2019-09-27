@@ -545,6 +545,8 @@ function getPeriodName(period) {
     periodName = '3泊4日';
   } else if (period == 4) {
     periodName = '4泊5日';
+  } else if (period == 9) {
+    periodName = '散歩';
   }
 
   return periodName;
