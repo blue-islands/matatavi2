@@ -453,13 +453,13 @@ function makeSioriAll(data) {
     }
     html += '</p>';
     html += '<a onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ',this)" '
-    html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
+    html += 'class="fab eki-button" target="_blank"><img src="images/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
     html += '<a href="' + searchUrl + '" '
-    html += 'class="fab search-button" target="_blank"><img src="img/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
+    html += 'class="fab search-button" target="_blank"><img src="images/icons8-google-50.png" width="30" style="margin: 12px;"></a>';
     html += '&nbsp;&nbsp;';
     html += '<a href="' + mapUrl + '" '
-    html += 'class="fab map-button" target="_blank"><img src="img/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
+    html += 'class="fab map-button" target="_blank"><img src="images/icons8-google-maps-50.png" width="30" style="margin: 12px;"></a>';
     html += '</div>';
     html += '</div>';
     timeline.append(html);
@@ -482,7 +482,7 @@ function makeSioriAll(data) {
       html += '<span class="date">ゴール</span>';
       html += '<h4 class="title"></h4>';
       html += '<a href="#" onclick="clickMakeEkispertUrl(' + lat1 + ',' + lng1 + ',' + lat2 + ',' + lng2 + ',this)" '
-      html += 'class="fab eki-button" target="_blank"><img src="img/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
+      html += 'class="fab eki-button" target="_blank"><img src="images/ekispert-logo.png" width="30" style="margin: 12px;"></a>';
       html += '</div>';
       html += '</div>';
       timeline.append(html);
