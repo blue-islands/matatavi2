@@ -41,6 +41,9 @@
           <ons-list-item onclick="fn.load('history.html')" tappable>
             履歴
           </ons-list-item>
+          <ons-list-item onclick="fn.load('howToUse.html')" tappable>
+            使い方
+          </ons-list-item>
         </ons-list>
       </ons-page>
     </ons-splitter-side>
@@ -86,6 +89,37 @@
     </ons-page>
   </template>
 
+    <template id="howToUse.html">
+    <ons-page id="howToUse">
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          使い方
+        </div>
+      </ons-toolbar>
+      <div class="center-box-how-to">
+        <h1>
+          <img alt="logo" src="images/logo.png">
+        </h1>
+        <h2>また、旅がしたくなる</h2>
+        <p>Matataviは「旅のしおり」</p>
+        <p>自動作成サービスです。</p>
+        <p>旅行における意識決定を</p>
+        <p>手助けいたします。</p>
+        <br>
+        <p>日数と目的の２クリック</p>
+        <p>を選択するだけで、</p>
+        <p>あっという間に旅のプランを</p>
+        <p>提示してくれます。</p>
+        <br>
+      </div>
+    </ons-page>
+  </template>
+
   <template id="period.html">
     <ons-page id="period" class="page">
       <div class="page__background center-box-period-image"></div>
@@ -112,7 +146,6 @@
     </ons-page>
   </template>
 
-
   <template id="keyword.html">
     <ons-page id="keyword" class="page">
       <div class="page__background center-box-keyword-image"></div>
@@ -120,7 +153,7 @@
         <div class="left">
           <ons-back-button>日数</ons-back-button>
         </div>
-        <div class="center">種類</div>
+        <div class="center">目的</div>
       </ons-toolbar>
 
       <div class="center-box-keyword">
@@ -186,7 +219,7 @@
     <ons-page id="siori" class="page">
       <ons-toolbar>
         <div class="left">
-          <ons-back-button>種類</ons-back-button>
+          <ons-back-button>目的</ons-back-button>
         </div>
         <div class="center">旅プラン</div>
       </ons-toolbar>

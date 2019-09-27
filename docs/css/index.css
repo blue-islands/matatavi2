@@ -113,6 +113,20 @@ body {
     height: 450px;
 }
 
+.center-box-how-to {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    height: 600px;
+}
+
 /* プランタイトル */
 
 #plan-title {
