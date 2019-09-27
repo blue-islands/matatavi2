@@ -309,6 +309,11 @@ function startMapAnimation(data) {
 // 地図アニメーション次のポイント
 function nextMapAnimation(count, data) {
   console.log("count:" + count);
+  if (data == null) {
+    alert('もう一度、プランを選択してください。');
+    return;
+  }
+
   setTimeout(function() {
     var p = latlngStart;
     var name = "GOAL"
@@ -445,7 +450,11 @@ function makeSioriAll(data) {
     } else {
       html += '<div class="timeline-content right">';
     }
-    html += '<span class="date">' + day + '日目 ' + half + ' </span>';
+    if (param.period == 9) {
+      html += '<span class="date">' + day + 'ヶ所目 </span>';
+    } else {
+      html += '<span class="date">' + day + '日目 ' + half + ' </span>';
+    }
     html += '<h4 class="title">' + data[i].name1 + '</h4>';
     html += '<p class="description">';
     if (data[i].descs.length > 0) {
